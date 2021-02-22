@@ -3,7 +3,7 @@
 
 <h3>Current Rides: </h3>
 <% @rides.each do |ride| %>
-  <p><%= ride.name %></p>
+  <p><%= ride.name %>: <%= ride.thrill_rating %>/10</p>
 <% end %>
 
 <h3>Add A Ride to Workload</h3>

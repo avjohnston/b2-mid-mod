@@ -11,6 +11,7 @@ class MechanicsController < ApplicationController
   def update
     @mechanic = Mechanic.find(params[:id])
     RideMechanic.create(ride: Ride.find(params[:ride_id]), mechanic: @mechanic)
+    
     redirect_to "/mechanics/#{@mechanic.id}"
   end
 end
