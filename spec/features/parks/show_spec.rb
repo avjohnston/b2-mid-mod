@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "mechanics index page", type: :feature do
+RSpec.describe "parks show page", type: :feature do
   before :each do
     @park = Park.create!(name: "Hershey Park", admission: 50)
     @mech1 = Mechanic.create!(name: "Andrew", years_experience: 4)
@@ -20,18 +20,18 @@ RSpec.describe "mechanics index page", type: :feature do
     RideMechanic.create!(ride:@ride5 , mechanic:@mech3)
     RideMechanic.create!(ride:@ride2 , mechanic:@mech3)
   end
-  
-  it "shows mechanics and attributes along with avg experience" do
-    visit "/mechanics"
 
-    expect(page).to have_content("All Mechanics")
-    expect(page).to have_content("#{@mech1.name}")
-    expect(page).to have_content("Years Experience: #{@mech1.years_experience}")
-    expect(page).to have_content("#{@mech2.name}")
-    expect(page).to have_content("Years Experience: #{@mech2.years_experience}")
-    expect(page).to have_content("#{@mech3.name}")
-    expect(page).to have_content("Years Experience: #{@mech3.years_experience}")
-    expect(page).to have_content("Average Age of Experience For All Mechanics")
-    expect(page).to have_content(Mechanic.average_experience)
+  it 'shows parks attributes and rides' do
+    visit "parks/#{@park.id}"
+
+    expect(page).to have_content("#{@park.name}")
+    expect(page).to have_content("Admission: $50.00")
+    expect(page).to have_content("#{@ride1.name}")
+    expect(page).to have_content("#{@ride2.name}")
+    expect(page).to have_content("#{@ride3.name}")
+    expect(page).to have_content("#{@ride4.name}")
+    expect(page).to have_content("#{@ride5.name}")
+    expect(page).to have_content("#{@ride6.name}")
+    expect(page).to have_content("Average Thrill Rating: 8.2/10")
   end
 end

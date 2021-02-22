@@ -2,15 +2,16 @@ require 'rails_helper'
 
 RSpec.describe "mechanics show page", type: :feature do
   before :each do
+    @park = Park.create!(name: "Hershey Park", admission: 50)
     @mech1 = Mechanic.create!(name: "Andrew", years_experience: 4)
     @mech2 = Mechanic.create!(name: "Khoa", years_experience: 3)
     @mech3 = Mechanic.create!(name: "Doug", years_experience: 5)
-    @ride1 = Ride.create!(name: "The Punisher", thrill_rating: 9, open: true)
-    @ride2 = Ride.create!(name: "The Hurler", thrill_rating: 7, open: false)
-    @ride3 = Ride.create!(name: "Ninja", thrill_rating: 8, open: true)
-    @ride4 = Ride.create!(name: "Back Breaker", thrill_rating: 8, open: true)
-    @ride5 = Ride.create!(name: "Spine Tingler", thrill_rating: 7, open: false)
-    @ride6 = Ride.create!(name: "Widow Maker", thrill_rating: 10, open: true)
+    @ride1 = @park.rides.create!(name: "The Punisher", thrill_rating: 9, open: true)
+    @ride2 = @park.rides.create!(name: "The Hurler", thrill_rating: 7, open: false)
+    @ride3 = @park.rides.create!(name: "Ninja", thrill_rating: 8, open: true)
+    @ride4 = @park.rides.create!(name: "Back Breaker", thrill_rating: 8, open: true)
+    @ride5 = @park.rides.create!(name: "Spine Tingler", thrill_rating: 7, open: false)
+    @ride6 = @park.rides.create!(name: "Widow Maker", thrill_rating: 10, open: true)
     RideMechanic.create!(ride:@ride1 , mechanic:@mech1)
     RideMechanic.create!(ride:@ride3 , mechanic:@mech1)
     RideMechanic.create!(ride:@ride2 , mechanic:@mech2)

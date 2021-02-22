@@ -1,10 +1,6 @@
-require 'rails_helper'
-
-RSpec.describe Ride, type: :model do
+RSpec.describe Park, type: :model do
   describe 'validations' do
-    it { should have_many(:ride_mechanics) }
-    it { should have_many(:mechanics).through(:ride_mechanics) }
-    it { should belong_to(:park) }
+    it { should have_many(:rides) }
   end
 
   describe 'methods' do
@@ -28,22 +24,8 @@ RSpec.describe Ride, type: :model do
       RideMechanic.create!(ride:@ride2 , mechanic:@mech3)
     end
 
-    it 'open_rides' do
-      expect(Ride.open_rides).to eq([@ride1, @ride3, @ride4, @ride6])
-      expect(@mech1.rides.open_rides).to eq([@ride1, @ride3])
-    end
-
-    it 'order by rating' do
-      expect(Ride.order_by_rating).to eq([@ride6, @ride1, @ride3, @ride4, @ride2, @ride5])
-      expect(@mech1.rides.order_by_rating).to eq([@ride1, @ride3])
-    end
-
-    it 'average thrill rating' do
-      expect(Ride.average_thrill_rating.round(1).to_f).to eq(8.2)
-    end
-
-    it 'alphabetical order' do
-      expect(Ride.alph_order).to eq([@ride4, @ride3, @ride5, @ride2, @ride1, @ride6])
+    it 'admission fix' do
+      expect(@park.admission_fix).to eq("50.00")
     end
   end
 end

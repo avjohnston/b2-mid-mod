@@ -9,6 +9,6 @@
 <h3>Add A Ride to Workload</h3>
 <%= form_with url: "/mechanics/#{@mechanic.id}", method: :patch, local: true, params: {ride_id: :ride_id} do |f| %>
   <%= f.label          "ride ID" %>
-  <%= f.number_field     :ride_id %><br>
+  <%= f.number_field     :ride_id, required: true %><br>
   <%= f.submit 'Submit' %>
 <% end %>
