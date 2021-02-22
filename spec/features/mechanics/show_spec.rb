@@ -29,4 +29,13 @@ RSpec.describe "mechanics show page", type: :feature do
     expect(page).to have_content("The Punisher")
     expect(page).to have_content("Ninja")
   end
+
+  it 'can add a ride to a mechanics workload' do
+    visit "/mechanics/#{@mech1.id}"
+
+    expect(page).to have_content("Add A Ride to Workload")
+    fill_in "ride_id", with: "#{@ride6.id}"
+    click_on "Submit"
+    expect(page).to have_content("Widow Maker")
+  end
 end
